@@ -1,64 +1,73 @@
-// 1] Write a JavaScript Function to Reverse a String.
-function reverese(string) {
+// Function to Reverse a String.
+function RevereseString(string) {
     let reverseString = '';
     for (i = string.length - 1; i >= 0; i--) {
         reverseString += string[i]
     }
     return reverseString;
 }
-console.log(reverese("Hi This is Hala"));
+console.log(RevereseString("Hi This is Hala"));
 
-// 2] Write a JavaScript Function to check whether a String is Palindrome or not.
+
+// Function to check whether a String is Palindrome or not.
 function checkPalindrome(string) {
-
-    // find the length of a string
-    const len = string.length;
-
-    // loop through half of the string
-    for (let i = 0; i < len / 2; i++) {
-
-        // check if first and last string are same
-        if (string[i].toLowerCase() !== string[len - 1 - i].toLowerCase()) {
-            return 'It is not a palindrome';
+    for (let i = 0; i < string.length / 2; i++) {
+        if (string[i].toLowerCase() !== string[string.length - 1 - i].toLowerCase()) {
+            return `${string} is not a palindrome`;
         }
     }
-    return 'It is a palindrome';
+    return `${string} is a palindrome`;
 }
+console.log(checkPalindrome("Mom"))
 
-console.log(checkPalindrome("Halah"))
 
-// 3] Write a JavaScript Function to calculate the number of Vowels & Consonants in a String.
-const vowels = ["a", "e", "i", "o", "u"]
-
+// Function to calculate the number of Vowels & Consonants in a String.
 function calcVowelsConsonants(string) {
+    const vowels = 'aeiou';
     let vowelsCounter = 0
     let consonantsCounter = 0
+    string = string.replace(/\s/g, '');
+
     for (let char of string.toLowerCase()) {
         if (vowels.includes(char))
             vowelsCounter++;
         else
             consonantsCounter++
     }
-    return `Vowels Number is: ${vowelsCounter} \n Consonants Number is: ${consonantsCounter}`
+    return `Vowels Number is: ${vowelsCounter} and Consonants Number is: ${consonantsCounter}`
 }
+console.log(calcVowelsConsonants("Hala Saad"))
 
-console.log(calcVowelsConsonants("Hala"))
 
-// 4] Write a JavaScript Function to find the common Elements in an Array.
+// Function to find the common Elements in an Array.
+function CommonElements(array1, array2) {
+    let array3=[];
 
-// 5] Write a JavaScript Function to check if a String is an Anagram of another String or not.
+    for (let i = 0; i < array1.length; i++) {
+        for (let j = 0; j < array2.length; j++) {
+            if (array1[i] === array2[j]) {
+                array3.push(array1[i]);
+            }
+        }
+        array3=[...new Set(array3)];
+    }
+    return `Common elements are ${array3}`
+}
+console.log(CommonElements([10, 20, 30, 40 , 50], [20,20,30,60,70,90]))
+
+
+// Function to check if a String is an Anagram of another String or not.
 function checkAnagram(str1, str2) {
-
     if (str1.length !== str2.length) {
         return false;
     }
+    var str1New = str1
+    str1New = str1New.split('').sort().join('');
+    // ----------------------------------------------
+    var str2New = str2;
+    str2New = str2New.split('').sort().join('');
 
-    var str1New = str1.split('').sort().join('');
-    var str2New = str2.split('').sort().join('');
-
-    var result = (str1New === str2New);
-    return result;
+    if(str1New === str2New)
+    return true;
 }
-
-// Checking the output
-console.log(checkAnagram('abc', 'cba'));
+console.log(checkAnagram('abc', 'bca'));
